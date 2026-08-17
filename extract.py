@@ -1,7 +1,7 @@
 import csv
 from pathlib import Path
 
-bucket = Path("AssesmentProject/csvbucket")
+bucket = Path("csvbucket")
 
 
 
