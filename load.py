@@ -1,4 +1,4 @@
-from AssessmentProject.connectdb import get_connection
+from connectdb import get_connection
 
 def load_data(regions, houses):
     try:

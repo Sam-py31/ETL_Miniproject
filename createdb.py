@@ -1,4 +1,4 @@
-from AssessmentProject.connectdb import get_connection
+from connectdb import get_connection
 def createdb():
     try:
 
