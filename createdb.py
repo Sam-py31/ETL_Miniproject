@@ -10,7 +10,6 @@ def createdb():
 
 
 
-
         cursor.execute('''
                     create table if not exists regions (
                     region_id serial primary key,
