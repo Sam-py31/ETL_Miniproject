@@ -28,6 +28,7 @@ def load_data(regions, houses):
             cursor.execute("""
             INSERT INTO house (date, region_id, average_price, monthly_change, annual_change, seasonal_adjusted_price)
             VALUES (%s, %s, %s, %s, %s, %s)
+            ON CONFLICT (date, region_id) DO NOTHING
             """,
             (
                 data["date"],
@@ -38,7 +39,7 @@ def load_data(regions, houses):
                 data["seasonal_adjusted_price"]
                 
             )
-            ON CONFLICT (date, region_id) DO NOTHING
+
         )
 
         connection.commit()
