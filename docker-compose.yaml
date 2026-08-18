@@ -1,21 +1,4 @@
-services:
-
-  db:
-    image: postgres:16
-
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-
-    ports:
-      - "${POSTGRES_PORT}:5432"
-
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-
-  adminer:
+adminer:
     image: adminer
 
     ports:
@@ -33,6 +16,18 @@ services:
     depends_on:
       - db
 
+  grafana:
+    image: grafana/grafana
+
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - db
+
+    volumes:
+      - grafana_data:/var/lib/grafana
+
 volumes:
   postgres_data:
-  #
+  grafana_data:

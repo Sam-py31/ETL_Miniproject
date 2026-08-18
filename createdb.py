@@ -31,7 +31,8 @@ def createdb():
             average_price DECIMAL,
             monthly_change DECIMAL,
             annual_change DECIMAL,
-            seasonal_adjusted_price DECIMAL
+            seasonal_adjusted_price DECIMAL,
+            UNIQUE (date, region_id)
         )
         """)
 

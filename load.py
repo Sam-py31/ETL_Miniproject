@@ -36,8 +36,9 @@ def load_data(regions, houses):
                 data["monthly_change"],
                 data["annual_change"],
                 data["seasonal_adjusted_price"]
-                ON CONFLICT (date, region_id) DO NOTHING
+                
             )
+            ON CONFLICT (date, region_id) DO NOTHING
         )
 
         connection.commit()
