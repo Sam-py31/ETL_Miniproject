@@ -9,7 +9,8 @@ def create_db_func():
 def wait_for_db():
     while True:
         try:
-            with connectdb.get_connection() as conn:
+            with connectdb.get_connection():
+
                 print("Database is ready!")
             return
         except Exception as e:
