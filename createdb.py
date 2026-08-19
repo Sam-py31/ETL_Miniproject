@@ -14,8 +14,8 @@ def createdb():
                     create table if not exists regions (
                     region_id serial primary key,
                     region_name VARCHAR(100) not null,
-                    area_code VARCHAR(100) not null
-
+                    area_code VARCHAR(100) not null,
+                    UNIQUE (region_name, area_code)
                     )
                     ''')
 
@@ -29,9 +29,6 @@ def createdb():
             date DATE NOT NULL,
             region_id INTEGER NOT NULL REFERENCES regions(region_id),
             average_price DECIMAL,
-            monthly_change DECIMAL,
-            annual_change DECIMAL,
-            seasonal_adjusted_price DECIMAL,
             UNIQUE (date, region_id)
         )
         """)

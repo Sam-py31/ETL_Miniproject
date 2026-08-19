@@ -12,6 +12,8 @@ def load_data(regions, houses):
             cursor.execute("""
             INSERT INTO regions (region_name, area_code)
             VALUES (%s, %s)
+            ON CONFLICT(region_name, area_code)
+            DO UPDATE SET region_name = EXCLUDED.region_name
             RETURNING region_id
             """,
             (
@@ -26,17 +28,15 @@ def load_data(regions, houses):
         for data in houses:
             region_id = region_ids[data["area_code"]]
             cursor.execute("""
-            INSERT INTO house (date, region_id, average_price, monthly_change, annual_change, seasonal_adjusted_price)
-            VALUES (%s, %s, %s, %s, %s, %s)
+            INSERT INTO house (date, region_id, average_price)
+            VALUES (%s, %s, %s)
             ON CONFLICT (date, region_id) DO NOTHING
             """,
             (
                 data["date"],
                 region_id,
                 data["average_price"],
-                data["monthly_change"],
-                data["annual_change"],
-                data["seasonal_adjusted_price"]
+
                 
             )
 

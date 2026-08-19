@@ -26,6 +26,9 @@ def parse(reader):
         if not date or not region_name or not area_code or not average_price:
             continue
 
-        data.append(row)
+        data.append({            "date": date,
+            "average_price": average_price,
+            "region_name": region_name,
+            "area_code": area_code})
 
     return data
